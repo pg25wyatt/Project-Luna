@@ -6,7 +6,9 @@
 #include "GameFramework/Character.h"
 #include "CharacterBase.generated.h"
 
+struct FInputActionValue;
 class UInputAction;
+class UAnimMontage;
 
 UCLASS()
 class PROJECTLUNA_API ACharacterBase : public ACharacter
@@ -17,42 +19,49 @@ public:
 	// Sets default values for this character's properties
 	ACharacterBase();
 
-	// Setup animations
+	// Setup Animations
 	UPROPERTY(EditAnywhere, Category = "Animations")
-	TObjectPtr<UAnimMontage> LightAttack;
+	TObjectPtr<UAnimMontage> LightAttackAnimation;
 
 	UPROPERTY(EditAnywhere, Category = "Animations")
-	TObjectPtr<UAnimMontage> MediumAttack;
+	TObjectPtr<UAnimMontage> MediumAttackAnimation;
 
 	UPROPERTY(EditAnywhere, Category = "Animations")
-	TObjectPtr<UAnimMontage> HeavyAttack;
+	TObjectPtr<UAnimMontage> HeavyAttackAnimation;
 
 	UPROPERTY(EditAnywhere, Category = "Animations")
-	TObjectPtr<UAnimMontage> SpecialAttack;
+	TObjectPtr<UAnimMontage> SpecialAttackAnimation;
 
 	UPROPERTY(EditAnywhere, Category = "Animations")
-	TObjectPtr<UAnimMontage> SpecialAbility;
+	TObjectPtr<UAnimMontage> SpecialAbilityAnimation;
 	
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	// Setup input actions
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	// Setup Input Actions
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Inputs")
 	TObjectPtr<UInputAction> LightAttackAction;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Inputs")
 	TObjectPtr<UInputAction> MediumAttackAction;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Inputs")
 	TObjectPtr<UInputAction> HeavyAttackAction;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Inputs")
 	TObjectPtr<UInputAction> SpecialAttackAction;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Inputs")
 	TObjectPtr<UInputAction> SpecialAbilityAction;
+
+	// Setup Attack Functions
+	UFUNCTION(BlueprintCallable)
+	void LightAttack(const FInputActionValue& value);
+
+	UFUNCTION(BlueprintCallable)
+	void MediumAttack(const FInputActionValue& value);
 
 public:	
 	// Called every frame

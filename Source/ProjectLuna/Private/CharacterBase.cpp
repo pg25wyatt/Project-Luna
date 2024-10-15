@@ -2,6 +2,10 @@
 
 
 #include "CharacterBase.h"
+#include "Animation/AnimMontage.h"
+#include "InputAction.h"
+#include "EnhancedInputComponent.h"
+#include "EnhancedInputSubsystems.h"
 
 // Sets default values
 ACharacterBase::ACharacterBase()
@@ -15,7 +19,26 @@ ACharacterBase::ACharacterBase()
 void ACharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
-	
+}
+
+void ACharacterBase::LightAttack(const FInputActionValue& value)
+{
+	if (!IsValid(LightAttackAnimation))
+	{
+		return;
+	}
+
+	PlayAnimMontage(LightAttackAnimation);
+}
+
+void ACharacterBase::MediumAttack(const FInputActionValue& value)
+{
+	if (!IsValid(MediumAttackAction))
+	{
+		return;
+	}
+
+	PlayAnimMontage(MediumAttackAnimation);
 }
 
 // Called every frame
@@ -29,6 +52,26 @@ void ACharacterBase::Tick(float DeltaTime)
 void ACharacterBase::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
+
+	const TObjectPtr<AController> controller = GetController();
+	if (TObjectPtr<APlayerController> playerCon = Cast<APlayerController>(Controller))
+	{
+		UEnhancedInputLocalPlayerSubsystem* enhancedInputSubsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(playerCon->GetLocalPlayer());
+
+		UEnhancedInputComponent* InputComp = Cast<UEnhancedInputComponent>(PlayerInputComponent);
+		if (IsValid(InputComp))
+		{
+			if (IsValid(LightAttackAction))
+			{
+				InputComp->BindAction(LightAttackAction, ETriggerEvent::Triggered, this, &ACharacterBase::LightAttack);
+			}
+
+			if (IsValid(MediumAttackAction))
+			{
+				InputComp->BindAction(MediumAttackAction, ETriggerEvent::Triggered, this, &ACharacterBase::MediumAttack);
+			}
+		}
+	}
 
 }
 
