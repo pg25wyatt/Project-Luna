@@ -53,6 +53,7 @@ void ACharacterBase::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+    // Bind Input Actions to their respective Attacks
 	const TObjectPtr<AController> controller = GetController();
 	if (TObjectPtr<APlayerController> playerCon = Cast<APlayerController>(Controller))
 	{

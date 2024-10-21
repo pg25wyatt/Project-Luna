@@ -2,14 +2,14 @@
 
 
 #include "CharacterController.h"
+#include "EnhancedInputComponent.h"
+#include "EnhancedInputSubsystems.h"
+#include "GameFramework/Character.h"
+#include "Runtime/Datasmith/DatasmithCore/Public/DatasmithDefinitions.h"
 
 ACharacterController::ACharacterController(const FObjectInitializer& ObjectInitializer)
 {
 	// Initialize and create reference to the camera manager
-}
-
-void ACharacterController::SpawnCharacter()
-{
 }
 
 void ACharacterController::Tick(float DeltaSeconds)
@@ -20,16 +20,4 @@ void ACharacterController::Tick(float DeltaSeconds)
 void ACharacterController::SetupInputComponent()
 {
 	Super::SetupInputComponent();
-}
-
-void ACharacterController::SideMove(const FInputActionValue& value)
-{
-}
-
-void ACharacterController::Jump(const FInputActionValue& value)
-{
-}
-
-void ACharacterController::UpdateCharacterControllerRotation()
-{
 }
