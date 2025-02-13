@@ -10,6 +10,7 @@
  * 
  */
 
+struct FInputActionValue;
 class UInputMappingContext;
 class UInputAction;
 
