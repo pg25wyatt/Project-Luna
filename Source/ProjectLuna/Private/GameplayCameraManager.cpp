@@ -39,7 +39,6 @@ void AGameplayCameraManager::UpdateViewTargetInternal(FTViewTarget& OutVT, float
 	else
 	{
 		OutVT.POV.FOV = CameraData->CameraFOV;
-	}
-	
+	}	
 }
 
