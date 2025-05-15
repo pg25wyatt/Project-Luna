@@ -11,6 +11,7 @@ UHealthComponent::UHealthComponent()
 	PrimaryComponentTick.bCanEverTick = true;
 
 	MaxHealth = 100;
+	CurrentHealth = MaxHealth;
 }
 
 // Called when the game starts
