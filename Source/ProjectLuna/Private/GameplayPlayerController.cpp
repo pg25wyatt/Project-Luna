@@ -28,14 +28,6 @@ void AGameplayPlayerController::SetupInputComponent()
 	Super::SetupInputComponent();
 }
 
-void AGameplayPlayerController::HorizontalMove(const FInputActionValue& Value)
-{
-}
-
-void AGameplayPlayerController::Jump(const FInputActionValue& Value)
-{
-}
-
 void AGameplayPlayerController::UpdateControllerRotation()
 {
 	FVector avgLocation = UProjectLunaLibrary::GetPositionBetweenCharacters(this);

@@ -42,11 +42,5 @@ protected:
 	virtual void SetupInputComponent() override;
 
 	UFUNCTION()
-	void HorizontalMove(const FInputActionValue& Value);
-
-	UFUNCTION()
-	void Jump(const FInputActionValue& Value);
-
-	UFUNCTION()
 	void UpdateControllerRotation();
 };
